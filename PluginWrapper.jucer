@@ -5,6 +5,8 @@
               projectLineFeed="&#10;" version="1.1.0" jucerFormatVersion="1">
   <MAINGROUP id="oDuHT7" name="PluginWrapper">
     <GROUP id="{3DA61DA9-A469-0370-563D-26440E7F77FC}" name="Source">
+      <FILE id="EYdrib" name="AboutBox.cpp" compile="1" resource="0" file="Source/AboutBox.cpp"/>
+      <FILE id="PaFVwI" name="AboutBox.h" compile="0" resource="0" file="Source/AboutBox.h"/>
       <FILE id="MaRovr" name="PluginWindow.cpp" compile="1" resource="0"
             file="Source/PluginWindow.cpp"/>
       <FILE id="rhvkG3" name="PluginWindow.h" compile="0" resource="0" file="Source/PluginWindow.h"/>

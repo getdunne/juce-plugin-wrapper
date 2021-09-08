@@ -7,7 +7,7 @@ class WrapperEditor  : public AudioProcessorEditor, public ChangeListener
 {
 public:
     WrapperEditor (WrapperProcessor&);
-    ~WrapperEditor();
+    virtual ~WrapperEditor() = default;
 
     // Component
     void paint (Graphics&) override;
@@ -16,6 +16,9 @@ public:
     // ChangeListener
     void changeListenerCallback(ChangeBroadcaster*) override;
 
+protected:
+    void handleMenuButton();
+
 private:
     WrapperProcessor& processor;
     std::unique_ptr<PluginWindow> pluginWindow;
@@ -23,6 +26,8 @@ private:
     TextButton openPluginGuiButton;
     TextButton getPluginStateButton;
     TextButton setPluginStateButton;
+
+    TextButton menuButton;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (WrapperEditor)
 };

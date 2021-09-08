@@ -85,9 +85,8 @@ AudioProcessorEditor* WrapperProcessor::createEditor()
 #if 0   // change to 1 to show the selected plug-in's own GUI window, if it has one
     if (plugin->hasEditor()) return plugin->createEditor();
     else
-#else
-    return new WrapperEditor(*this);
 #endif
+    return new WrapperEditor(*this);
 }
 
 void WrapperProcessor::prepareToPlay(double sampleRate, int maximumExpectedSamplesPerBlock)

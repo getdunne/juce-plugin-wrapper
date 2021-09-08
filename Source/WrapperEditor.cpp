@@ -1,5 +1,6 @@
 #include "WrapperProcessor.h"
 #include "WrapperEditor.h"
+#include "AboutBox.h"
 
 WrapperEditor::WrapperEditor (WrapperProcessor& p)
     : AudioProcessorEditor (&p), processor (p)
@@ -17,7 +18,6 @@ WrapperEditor::WrapperEditor (WrapperProcessor& p)
     getPluginStateButton.onClick = [this]()
     {
         processor.getPluginState();
-        repaint();
     };
     addAndMakeVisible(&getPluginStateButton);
 
@@ -25,15 +25,17 @@ WrapperEditor::WrapperEditor (WrapperProcessor& p)
     setPluginStateButton.onClick = [this]()
     {
         processor.setPluginState();
-        repaint();
     };
     addAndMakeVisible(&setPluginStateButton);
 
-    setSize(400, 300);
-}
+    menuButton.setButtonText("Popup Menu Test");
+    menuButton.onClick = [this]()
+    {
+        handleMenuButton();
+    };
+    addAndMakeVisible(&menuButton);
 
-WrapperEditor::~WrapperEditor()
-{
+    setSize(360, 220);
 }
 
 void WrapperEditor::paint (Graphics& g)
@@ -43,15 +45,28 @@ void WrapperEditor::paint (Graphics& g)
 
 void WrapperEditor::resized()
 {
-    auto area = getLocalBounds().reduced(40);
+    auto area = getLocalBounds().reduced(20);
     openPluginGuiButton.setBounds(area.removeFromTop(30));
     area.removeFromTop(20);
     getPluginStateButton.setBounds(area.removeFromTop(30));
     area.removeFromTop(20);
     setPluginStateButton.setBounds(area.removeFromTop(30));
+    area.removeFromTop(20);
+    menuButton.setBounds(area.removeFromTop(30));
 }
 
 void WrapperEditor::changeListenerCallback(ChangeBroadcaster*)
 {
     pluginWindow.reset(nullptr);
+}
+
+void WrapperEditor::handleMenuButton()
+{
+    PopupMenu menu;
+    menu.addItem(1, "About...");
+    int sel = menu.show();
+    if (sel)
+    {
+        AboutBox::launch();
+    }
 }
